@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Knockout Headstart</title>
+
+    <link rel="stylesheet" href="site.css">
+</head>
+
+<body class="takeside">
+    <h2>Try this data bind</h2>
+    <div data-bind="foreach: acceptedCoins" class="insertionArea">
+        <button type="submit" data-bind="click: $parent.acceptCoin, 
+        event: {mouseover: $parent.statusOfCoin, mouseout: $parent.blankoutStatus}"  class="btn">
+                    <span data-bind="text: name"></span>
+            </button>
+    </div>
+    <p class="money">$<span data-bind="text: paid"></span></p>
+   
+    <div data-bind="foreach: things" class="insertionArea2">
+        <button type="submit" 
+        data-bind="enable: ($parent.paid() - price >= 0), click: $parent.payForIt,
+         event: {mouseover: $parent.statusOfItem, mouseout: $parent.blankoutStatus}"  class="btn2">
+                    <span data-bind="text: name"></span>
+            </button>
+            
+    </div>
+    <p class="status"><span data-bind="text: status"></span></p>
+    
+    <script src="./externals/require.js"></script>
+    <script src="./built/require-config.js"></script>
+    <script>
+        require(["built/vendingMachine"]);
+    </script>
+</body>
+
+</html>
